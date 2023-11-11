@@ -12,10 +12,12 @@
 <canvas id="canvas" width="750" height="549"></canvas>
 <input type="file" id="imageUpload" accept="image/*">
 <button id="dl">Download Image</button>
+<button id="src">Source</button>
 <a id="link"></a> 
 <script>
     var up = document.getElementById('imageUpload');
     var dl = document.getElementById('dl');
+    var src = document.getElementById('src');
     up.onchange = function() {
         imgChange()  
     };
@@ -46,6 +48,9 @@
         link.setAttribute('download', 'livereaction.png');
         link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
         link.click();
+    };
+    src.onclick = function() {
+        window.location.replace('https://github.com/Baggette/live-reaction');
     };
   </script>
 <style>
