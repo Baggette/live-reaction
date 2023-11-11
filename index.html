@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live reaction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+</body>
+
+<canvas id="canvas" width="750" height="549"></canvas>
+<input type="file" id="imageUpload" accept="image/*">
+<button id="dl">Download Image</button>
+<a id="link"></a> 
+<script>
+    var up = document.getElementById('imageUpload');
+    var dl = document.getElementById('dl');
+    up.onchange = function() {
+        imgChange()  
+    };
+
+    function imgChange(imagePath) {
+        var imageUpload = document.getElementById("imageUpload");
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var img = new Image();
+        var img1 = new Image();
+        var img2 = new Image();
+        img.onload = function(){
+            ctx.drawImage(img,0,0,750,549);
+                img1.onload = function(){
+                ctx.drawImage(img1,12,127,726,410);
+            };
+            img1.src = URL.createObjectURL(imageUpload.files[0]);
+            img2.onload = function(){
+                ctx.drawImage(img2,165,25,235,80);
+            };
+            img2.src = URL.createObjectURL(imageUpload.files[0]);
+        };
+        img.src = "./assets/Live.jpg";
+        
+    };
+    dl.onclick = function() {
+        var link = document.getElementById('link');
+        link.setAttribute('download', 'livereaction.png');
+        link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+        link.click();
+    };
+  </script>
+<style>
+    #canvas {
+        border: 1px solid #000;
+        align-items: center;
+    }
+    html {
+        background-color: #000;
+    }
+    #imageUpload{
+        align-items: center;
+    }
+</style> 
+</html>
